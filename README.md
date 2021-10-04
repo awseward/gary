@@ -1,5 +1,8 @@
 # gary
-A little home-rolled deployment thingamajig 🤷 
+
+A little home-rolled deployment thingamajig 🤷
+
+Probably not anything to be taken all too seriously, at least currently.
 
 ## Configuration
 
