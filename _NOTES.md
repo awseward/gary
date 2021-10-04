@@ -87,3 +87,21 @@ Set up things like:
 
 - Land the new app code
 - Restart the daemon
+
+## Misc/scratch
+
+Some kind of mode-check something or other could be nice on files which may
+have secrets…
+
+Should probably be improved beyond this, current form is _very_ rough.
+
+```sh
+# Uses at least bash-ism, so requires bash
+
+_check_fmode() {
+  fpath="${1:?}"
+  fmode="$(stat -L "${fpath}" | awk '{ print $3 }')"
+
+  [ "${fmode: -6}" = '------' ] || return 1
+}
+```
