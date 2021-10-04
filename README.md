@@ -1,7 +1,7 @@
 # gary
-Little home-rolled deployment thingamajig 🤷
+A little home-rolled deployment thingamajig 🤷 
 
-### Configuration
+## Configuration
 
 Add a `.gary/` Directory in your project's root. Currently, includes:
 
@@ -19,3 +19,9 @@ migrations, etc…).
 
 * Executable file (can be script or binary 🤷)
 * Currently is not given any args, but that may change if deemed valuable
+
+## Why the name?
+
+Honest, not entirely sure. Felt right, I guess…
+
+<img src="/gary-dithered.png" height="120" alt="Gary!" />
