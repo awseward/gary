@@ -7,6 +7,15 @@ Add a `.gary/` Directory in your project's root. Currently, includes:
 
 ##### `.gary/server`
 
-Should be an executable file. It can be a script or a binary, but name must be
-as specified. Currently is not passed any args, but that may change if some
-value in doing so emerges.
+Called to start web application server.
+
+* Executable file (can be script or binary 🤷)
+* Currently is not given any args, but that may change if deemed valuable
+
+##### `.gary/on_deploy`
+
+Called to do any necessary application setup (dependency install, datastore
+migrations, etc…).
+
+* Executable file (can be script or binary 🤷)
+* Currently is not given any args, but that may change if deemed valuable
