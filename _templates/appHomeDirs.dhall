@@ -18,7 +18,11 @@ let homeContents
     : AppConfig → MapTextText
     = λ(cfg : AppConfig) →
         toMap
-          { `app_env.sh` =
+          { `app_env.sh`
+            -- NOTE: Don't _love_ this, necessarily, would maybe be more --
+            -- palatable with stronger guarantees that this file will have mode
+            -- of `chmod 600` or similar
+            =
               ''
               # Application configuration/secrets here as env vars, example:
               # SOME_TOKEN=abc123!@#
