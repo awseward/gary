@@ -43,7 +43,7 @@ link_target_dirpath="${HOME}/${app_name}"
 mv "${extracted_dir}" "${link_source_dirpath}"
 
 cd "${link_source_dirpath}"
-xargs -t rm -vf < .slugignore
+xargs -t rm -rvf < .slugignore
 
 # === BEGIN app-specific setup ===
 
