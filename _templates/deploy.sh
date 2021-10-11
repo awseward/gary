@@ -2,6 +2,13 @@
 
 set -euo pipefail
 
+# USAGE:
+#
+# deploy.sh <revision>
+#           some-branch # branch name
+#           4d7ad62c29b # commit SHA
+#
+
 deploy_script_dir="$(readlink -f "$0" | xargs dirname)"; readonly deploy_script_dir
 
 tarball_url() {
@@ -46,9 +53,7 @@ cd "${link_source_dirpath}"
 xargs -t rm -rvf < .slugignore
 
 # === BEGIN app-specific setup ===
-
-"${deploy_script_dir}/on_deploy.sh"
-
+.gary/on_deploy
 # === END app-specific setup ===
 
 # I've found if you don't delete this first, it tends to start doing weird
