@@ -19,6 +19,25 @@ tarball_url() {
   echo "https://github.com/${owner}/${repo}/tarball/${revision}"
 }
 
+# Keep the newest entries around; prune everything older than that.
+#   $1: $prune_dir  -- path to the directory whose contents are to be pruned
+#   $2: $prune_keep -- how many to keep
+prune() {
+  local -r prune_dir="${1:?}"
+  local -r prune_keep="${2:-3}"
+  local -r prune_start_offset=$(( prune_keep + 1 ))
+
+  (
+    cd "${prune_dir}" || exit 1
+    pwd
+    # shellcheck disable=SC2010
+    #   see: https://github.com/koalaman/shellcheck/issues/1086
+    ls -1 -a -t | grep -v '^[.]\{1,2\}$' \
+      | tail -n +${prune_start_offset} \
+      | xargs rm -rf
+  )
+}
+
 # === BEGIN parameterization ===
 
 revision="${1:?}"
@@ -35,8 +54,9 @@ echo "daemon_name: ${daemon_name:?}"
 
 deploy_name="${app_name}-$(date +'%Y%m%d%H%M%S')"
 
-download_dir="${HOME}/.cache/deploy/${deploy_name}"
-data_basedir="${HOME}/.local/share/deploy"
+cache_basedir="${HOME}/.cache/deploy/${app_name}"
+data_basedir="${HOME}/.local/share/deploy/${app_name}"
+download_dir="${cache_basedir}/${deploy_name}"
 
 mkdir -p "${download_dir}" "${data_basedir}"
 
@@ -62,3 +82,6 @@ rm -rf "${link_target_dirpath}" || true
 ln -f -s "${link_source_dirpath}" "${link_target_dirpath}"
 
 doas rcctl restart "${daemon_name}"
+
+prune "${cache_basedir}"
+prune "${data_basedir}"
