@@ -19,6 +19,29 @@ setup() {
   [ "$(ls -1 | sort -u)" = "$(echo -e "quatre\ntrois")" ]
 }
 
+# NOTE: This idea did not work… 😶
+# I'd like to do something similar, but it doesn't look like anyone out there
+# has posted any examples of something like what I'm trying to do, and initial
+# stabs at using `eval` 😬 didn't really get me anywhere.
+#
+# for u in $(seq 0 7); do
+#   g=0
+#   o=0
+#   bmap="${u}${g}${o}"
+#
+#   # echo "bmap: ${bmap}"
+#
+#   @test "check_fmode accepts ${bmap}" {
+#     tmp_dir="$(mktemp -d)"; readonly tmp_dir
+#     cd "${tmp_dir}" || return 1
+#
+#     touch test_${bmap} && chmod ${bmap} "test_${bmap}"
+#     set +e # Hmmm… 🤔
+#     check_fmode "test_${bmap}"
+#     [ $? = 0 ]
+#   }
+# done
+
 @test 'check_fmode accepts 700' {
   tmp_dir="$(mktemp -d)"; readonly tmp_dir
   cd "${tmp_dir}" || return 1
