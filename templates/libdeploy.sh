@@ -27,7 +27,7 @@ prune() {
     # shellcheck disable=SC2010
     #   see: https://github.com/koalaman/shellcheck/issues/1086
     ls -1 -a -t | grep -v '^[.]\{1,2\}$' \
-      | tail -n +${prune_start_offset} \
+      | tail -n "+${prune_start_offset}" \
       | xargs rm -rf
   )
 }
