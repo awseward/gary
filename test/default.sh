@@ -2,4 +2,7 @@
 
 set -euo pipefail
 
-echo 'TODO: write some _actual_ tests' && exit 1
+# NOTE: This expects to be called from the root of the repo, so consider the
+# working directory should be that.
+
+./example.sh

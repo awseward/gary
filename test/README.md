@@ -2,13 +2,9 @@
 
 Uses [git-test].
 
-Set up local `.git/config`:
+Set up local `.git/config` via `./test/_setup.sh`.
 
-```sh
-git test add './test/default.sh'
-```
-
-For more usage info, see: [git-test].
+For usage info, see: [git-test].
 
 
 

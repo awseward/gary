@@ -35,6 +35,7 @@ let homeContents
               repo='${cfg.repoName}'
               app_name='${cfg.slug}'
               daemon_name='${cfg.slug}d''
+          , `libdeploy.sh` = ./libdeploy.sh as Text
           }
 
 let keyValue
