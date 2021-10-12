@@ -1,7 +1,8 @@
 #!/usr/bin/env bats
 
+modefiles_dir="$(mktemp -d)"
+
 setup_file() {
-  modefiles_dir="${BATS_FILE_TMPDIR}/modefiles"
   mkdir -p "${modefiles_dir}" && cd "${modefiles_dir}"
 
   for u in $(seq 0 7); do
@@ -12,11 +13,15 @@ setup_file() {
       done
     done
   done
+
+  cd -
 }
 
 setup() {
   # shellcheck disable=SC1091
   . templates/libdeploy.sh
+
+  cd "${modefiles_dir}"
 }
 
 @test 'check_fmode accepts files which ARE NOT accessible by "group" or "other"' {
