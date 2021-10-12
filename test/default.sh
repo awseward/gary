@@ -16,9 +16,7 @@ set -euo pipefail
   tmp_dir="$(mktemp -d)"; readonly tmp_dir
   cd "${tmp_dir}" || exit 1
 
-  touch foo
-  touch bar
-  touch baz
+  touch foo bar baz beep
 
   echo "pre-prune" && ls -lah
   prune '.' 2
