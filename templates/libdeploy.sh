@@ -35,9 +35,18 @@ prune() {
 # DISCLAIMER: This is probably not super duper robust, and could use work
 # Ensure that a file has no permissions set for any user other than the owner.
 #   $1: fpath -- path of the file to check
-check_fmode() {
+_check_fmode() {
   fpath="${1:?}"
   fmode="$(stat -L "${fpath}" | awk '{ print $3 }')"
 
   [ "${fmode: -6}" = '------' ] || return 1
+}
+
+check_fmode() {
+  fpath="${1:?}"
+
+  _check_fmode "${fpath}" || (
+    echo "File mode on '${fpath}' must be _00! (i.e. not accessible by group or other)"
+    exit 1
+  )
 }

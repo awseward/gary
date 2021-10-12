@@ -16,6 +16,8 @@ deploy_script_dir="$(readlink -f "$0" | xargs dirname)"; readonly deploy_script_
 # # shellcheck source=libdeploy.sh
 . "${deploy_script_dir}/libdeploy.sh"
 
+check_fmode "${deploy_script_dir}/app_env.sh"
+
 # === BEGIN parameterization ===
 
 revision="${1:?}"
