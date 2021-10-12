@@ -20,5 +20,7 @@ set -euo pipefail
   touch bar
   touch baz
 
-  prune '.' 2 && ls -lah
+  echo "pre-prune" && ls -lah
+  prune '.' 2
+  echo "post-prune" && ls -lah
 )
