@@ -18,7 +18,11 @@ set -euo pipefail
 
   touch un deux trois quatre
 
-  echo "pre-prune" && ls -lah
+  # echo "pre-prune" && ls -lah
   prune '.' 2
-  echo "post-prune" && ls -lah
+  # echo "post-prune" && ls -lah
+
+  # shellcheck disable=SC2012
+  # FIXME: Just use bats or something… (https://github.com/bats-core/bats-core)
+  [ "$(ls -1 | sort -u)" = "$(echo -e "quatre\ntrois")" ] || (echo 'Zut alors…' && exit 1)
 )
