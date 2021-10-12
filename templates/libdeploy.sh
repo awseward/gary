@@ -37,7 +37,8 @@ prune() {
 #   $1: fpath -- path of the file to check
 _check_fmode() {
   fpath="${1:?}"
-  fmode="$(stat -L "${fpath}" | awk '{ print $3 }')"
+  # shellcheck disable=SC2012
+  fmode="$(ls -lah "${fpath}" | awk '{ print $1 }')"
 
   [ "${fmode: -6}" = '------' ] || return 1
 }
