@@ -9,4 +9,6 @@ set -euo pipefail
 
 echo '==='
 
-bats test/
+dhall to-directory-tree --output test/libdeploy/ <<< ./test/libdeploy/check_fmode.bats.dhall
+
+bats -T -r test/
