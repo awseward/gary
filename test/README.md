@@ -10,14 +10,32 @@ For usage info, see: [git-test].
 
 Formalize this "watch test" concept a little more:
 
-``sh
-g worktree add --detach ../_test-gary HEAD
-cd ../_test-gary
+```sh
+worktree_relpath="../_test-$(pwd | xargs basename)"
+
+# FIXME: This `|| true` is a bit questionable…
+g worktree add --detach "${worktree_relpath}" HEAD || true
+cd "${worktree_relpath}" || return 1
+
+src_gitdir="$(
+  cat .git | awk '{ print $2 }' | xargs dirname | xargs dirname
+)"
 
 while sleep 1
 do
-  ls ../gary/.git/refs/heads/* | entr -n -p -d -s '
-    echo "main..$(echo $0 | xargs basename)" | xargs -t git test run
+  ls "${src_gitdir}"/refs/heads/* | entr -n -d -s '
+    set -euo pipefail
+
+    default_branch="$(git symbolic-ref refs/remotes/origin/HEAD | xargs basename)"
+    touched_ref="$(echo $0 | xargs basename)"
+
+    if [ "${default_branch}" = "${touched_ref}" ]; then
+      testspec="${touched_ref}"
+    else
+      testspec="${default_branch}..${touched_ref}"
+    fi
+
+    echo "${testspec}" | xargs -t git test run
   '
 done
 ```
