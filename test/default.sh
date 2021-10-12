@@ -9,4 +9,4 @@ set -euo pipefail
 
 echo '==='
 
-./test/libdeploy.bats
+bats test/
