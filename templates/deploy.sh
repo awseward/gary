@@ -9,20 +9,18 @@ set -euo pipefail
 #           4d7ad62c29b # commit SHA
 #
 
-deploy_script_dir="$(readlink -f "$0" | xargs dirname)"; readonly deploy_script_dir
-
 # shellcheck disable=SC1091
 # # Tried this, but syntastic doesn't seem to like it:
 # # shellcheck source=libdeploy.sh
-. "${deploy_script_dir}/libdeploy.sh"
+. "/usr/local/lib/gary/libdeploy.sh"
 
-check_fmode "${deploy_script_dir}/app_env.sh"
+check_fmode "${HOME}/app_env.sh"
 
 # === BEGIN parameterization ===
 
 revision="${1:?}"
 # shellcheck disable=SC1091
-. "${deploy_script_dir}/deploy_vars.sh"
+. "${HOME}/deploy_vars.sh"
 
 echo "owner:       ${owner:?}"
 echo "repo:        ${repo:?}"
