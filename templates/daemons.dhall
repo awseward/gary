@@ -19,7 +19,7 @@ let daemonScript =
             rc_reload=NO
 
             daemon_user='${cfg.slug}'
-            daemon='/home/${cfg.slug}/app_start.sh'
+            daemon='/usr/local/bin/gary/gary-start-app'
             daemon_flags='"/home/${cfg.slug}/${cfg.slug}" "/home/${cfg.slug}/app_env.sh"'
             daemon_logger='daemon.info'
 

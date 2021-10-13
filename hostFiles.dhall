@@ -14,4 +14,12 @@ in  λ(extIp : Text) →
         , `relayd.conf` = ./templates/relayd.conf.dhall extIp cfgs
         }
       , home = ./templates/appHomeDirs.dhall cfgs
+      , usr.local
+        =
+        { lib.gary.`libdeploy.sh` = ./templates/libdeploy.sh as Text
+        , bin =
+          { gary-deploy = ./templates/deploy.sh as Text
+          , gary-start-app = ./templates/start_app.sh as Text
+          }
+        }
       }
