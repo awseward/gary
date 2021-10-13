@@ -2,7 +2,16 @@
 
 A little home-rolled deployment thingamajig 🤷
 
-Probably not anything to be taken all too seriously, at least currently.
+Probably not anything to be taken all too seriously, and certainly nothing
+novel or groundbreaking; just what works for me.
+
+## Deployment
+
+Deploying a Gary application looks something like this:
+
+```sh
+ssh <host> doas -nu <app> gary-deploy <git_revision>
+```
 
 ## Configuration
 
