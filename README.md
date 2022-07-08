@@ -36,4 +36,4 @@ migrations, etc…).
 
 Honest, not entirely sure. Felt right, I guess…
 
-<img src="/gary-dithered.png" height="120" alt="Gary!" />
+<img src="https://user-images.githubusercontent.com/901035/177931348-5bc6807b-6019-43e1-a0bc-ca2db3190ebb.png" height="120" alt="Gary!" />
